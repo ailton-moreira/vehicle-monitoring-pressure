@@ -1,0 +1,29 @@
+# Scripts that shouldn't be versioned
+**/monitor-system.sh
+**/troubleshoot.sh
+**/validate-deployment.sh
+# Maven build artifacts
+**/target/
+*.jar
+*.war
+*.ear
+*.class
+
+# Allow source JAR files in src/ if needed (uncomment if required)
+# !**/src/**/*.jar
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+docker-volumes/
+
+# Logs
+*.log
+logs/
