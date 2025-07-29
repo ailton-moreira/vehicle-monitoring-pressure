@@ -68,14 +68,13 @@ The original issue was that when scaling from 1 to 3 Flink executors, the maximu
 ### Step 1: Clone and Navigate to Project
 
 ```bash
-git clone <repository-url>
-cd Kafka_flink
+git clone https://github.com/ailton-moreira/vehicle-monitoring-pressure.git
+cd flink-kafka-streaming
 ```
 
 ### Step 2: Build the Flink Job
 
 ```bash
-cd flink-kafka-streaming
 chmod +x build.sh
 ./build.sh
 ```
@@ -106,7 +105,7 @@ Expected services:
 - ✅ `data-simulator` - Python IoT simulator
 - ✅ `kafka-ui` - Kafka monitoring interface
 
-- Create the checkpoint dir in jobmanager
+- Create the checkpoint dir in jobmanager !!!(could make it automatically yet)!!
 
   ```bash
   docker exec jobmanager mkdir -p /flink-checkpoints
@@ -274,24 +273,7 @@ docker exec kafka kafka-console-consumer \
   --from-beginning | jq '.'
 ```
 
-### Scenario 3: Fault Tolerance Test
-
-```bash
-# Kill a task manager to test recovery
-docker stop taskmanager1
-
-# Wait 2 minutes and check Flink UI - job should recover
-# Restart the task manager
-docker start taskmanager1
-```
-
-### Scenario 4: Scaling Test
-
-1. Open your docker-compose.yml.
-2. Find the taskmanager1 service.
-3. Remove or comment out the line with container_name: taskmanager1.
-4. Save the file.
-5. Run the scale command
+### Scenario 3: Scaling Test
 
 ```bash
 # Scale up task managers
@@ -300,6 +282,21 @@ docker-compose up -d --scale taskmanager1=2
 # Scale up all task managers executors instance
 docker-compose up -d --scale taskmanager1=2 --scale taskmanager2=2 --scale taskmanager3=2
 # Check Flink UI for additional task slots
+```
+
+### Scenario 4: Fault Tolerance Test
+
+```bash
+# Kill a task manager to test recovery
+docker stop <taskmanager_name>
+#e.g:
+docker stop flink-kafka-streaming-taskmanager1-1
+
+# Wait 2 minutes and check Flink UI - job should recover
+# Restart the task manager
+docker start <taskmanager_name>
+#e.g:
+docker start flink-kafka-streaming-taskmanager1-1
 ```
 
 ## 📈 Performance Monitoring
