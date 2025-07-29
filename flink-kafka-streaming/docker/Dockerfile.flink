@@ -1,0 +1,12 @@
+FROM flink:1.18-scala_2.12-java11
+
+# Create a non-root user with proper permissions and set up directories
+RUN groupadd -r flink-user && \
+    useradd -r -g flink-user -s /bin/bash flink-user && \
+    mkdir -p /tmp/flink-checkpoints /tmp/flink-savepoints && \
+    chown -R flink-user:flink-user /tmp/flink-checkpoints /tmp/flink-savepoints && \
+    chmod -R 755 /tmp/flink-checkpoints /tmp/flink-savepoints \
+    mkdir -p /flink-checkpoints && chmod 777 /flink-checkpoints
+
+# Switch to the flink user
+USER flink-user

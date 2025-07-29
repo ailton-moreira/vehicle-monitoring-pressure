@@ -1,0 +1,7 @@
+com/example/VehiclePressureProcessor$VehiclePressureMaxSerializer.class
+com/example/VehiclePressureProcessor.class
+com/example/SensorReading.class
+com/example/VehiclePressureMax.class
+com/example/MaxPressureProcessFunction.class
+com/example/VehiclePressureProcessor$VehicleIdKeySerializer.class
+com/example/VehiclePressureProcessor$SensorReadingDeserializer.class
