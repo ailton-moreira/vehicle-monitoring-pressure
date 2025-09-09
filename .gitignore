@@ -33,3 +33,6 @@ logs/
 *.pptx
 *.tmp
 *.temp
+# Ignore PowerPoint files
+DS IT Data Engineer_Case Study.pptx
+Presentation_Ailton_Moreira.pptx
