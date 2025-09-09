@@ -27,3 +27,9 @@ docker-volumes/
 # Logs
 *.log
 logs/
+
+
+# Temporary files
+*.pptx
+*.tmp
+*.temp
